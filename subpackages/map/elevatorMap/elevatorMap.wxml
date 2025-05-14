@@ -1,0 +1,71 @@
+<!-- pages/elevatorMap/elevatorMap.wxml -->
+<view class="container">
+  <!-- 地图组件 -->
+  <map
+    id="map"
+    class="map"
+    latitude="{{latitude}}"
+    longitude="{{longitude}}"
+    scale="{{scale}}"
+    markers="{{markers}}"
+    show-location
+    bindmarkertap="onMarkerTap"
+  ></map>
+
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading">
+    <view class="loading-spinner"></view>
+    <view class="loading-text">加载中...</view>
+  </view>
+
+  <!-- 电梯信息面板 -->
+  <view class="info-panel">
+    <view class="panel-content">
+      <!-- 电梯基本信息 -->
+      <view class="elevator-header">
+        <view class="elevator-name">{{elevatorInfo.elevatorName}}</view>
+        <view class="elevator-status {{statusMap[elevatorInfo.status].class}}">
+          {{statusMap[elevatorInfo.status].text}}
+        </view>
+      </view>
+
+      <!-- 电梯图片 -->
+      <view class="elevator-image-container" wx:if="{{elevatorInfo.image}}">
+        <image src="{{elevatorInfo.image}}" mode="aspectFill" class="elevator-image" />
+      </view>
+
+      <!-- 电梯详细信息 -->
+      <view class="info-section">
+        <view class="info-group">
+          <view class="info-item">
+            <text class="label">位置：</text>
+            <text class="value">{{elevatorInfo.address || elevatorInfo.locationDescription}}</text>
+          </view>
+          <view class="info-item">
+            <text class="label">制造商：</text>
+            <text class="value">{{elevatorInfo.manufacturer}}</text>
+          </view>
+          <view class="info-item">
+            <text class="label">安装日期：</text>
+            <text class="value">{{elevatorInfo.installationDate}}</text>
+          </view>
+        </view>
+
+        <view class="info-group">
+          <view class="info-item">
+            <text class="label">楼层数：</text>
+            <text class="value">{{elevatorInfo.floorCount}}层</text>
+          </view>
+          <view class="info-item">
+            <text class="label">最大载重：</text>
+            <text class="value">{{elevatorInfo.maxCapacity}}kg</text>
+          </view>
+          <view class="info-item">
+            <text class="label">最后维护：</text>
+            <text class="value">{{elevatorInfo.lastMaintenanceDate}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

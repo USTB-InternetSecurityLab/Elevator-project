@@ -1,0 +1,87 @@
+<!-- pages/deviceList/deviceList.wxml -->
+<view class="container">
+  <view class="header-bg">
+    <view class="header-content">
+      <view class="header-title">我的设备</view>
+      <view class="header-subtitle">查看所有设备以及电梯</view>
+    </view>
+  </view>
+
+  <!-- 搜索栏 -->
+  <view class="search-container">
+    <view class="search-box">
+      <image class="search-icon" src="https://s3.bmp.ovh/imgs/2025/03/08/3ced8e754ce5a798.png"></image>
+      <input 
+        class="search-input" 
+        placeholder="搜索设备名称" 
+        placeholder-class="placeholder-style"
+        bindinput="handleSearch"
+      />
+    </view>
+  </view>
+
+  <!-- 设备列表 -->
+  <view class="list-container">
+    <view class="list-header">
+      <view class="title">设备列表</view>
+      <view class="device-count">共 {{total}} 台设备</view>
+    </view>
+
+    <!-- 加载状态 -->
+    <view wx:if="{{loading}}" class="loading">
+      <view class="loading-spinner"></view>
+      <view class="loading-text">加载中...</view>
+    </view>
+
+    <!-- 设备列表 -->
+    <view wx:else class="device-list">
+      <view wx:if="{{devices.length === 0}}" class="empty-state">
+        <text>暂无设备数据</text>
+      </view>
+      
+      <view wx:else class="device-items">
+        <view 
+          wx:for="{{devices}}" 
+          wx:key="id" 
+          class="device-item"
+          bindtap="navigateToDeviceDetail"
+          data-id="{{item.id}}"
+        >
+          <view class="device-content">
+            <view class="device-info">
+              <view class="device-name">{{item.deviceName}}</view>
+              <view class="device-model">型号：{{item.model}}</view>
+              <view class="device-status {{item.status === 1 ? 'status-online' : 'status-offline'}}">
+                {{item.status === 1 ? '在线' : '离线'}}
+              </view>
+            </view>
+            <view class="device-arrow">
+              <view class="arrow-icon"></view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 分页控件 -->
+      <view class="pagination">
+        <view 
+          class="page-btn {{currentPage === 1 ? 'disabled' : ''}}" 
+          bindtap="handlePageChange" 
+          data-type="prev"
+        >
+          上一页
+        </view>
+        <view class="page-info">
+          第 {{currentPage}} 页 / 共 {{totalPages}} 页
+        </view>
+        <view 
+          class="page-btn {{!hasMore ? 'disabled' : ''}}" 
+          bindtap="handlePageChange" 
+          data-type="next"
+        >
+          下一页
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

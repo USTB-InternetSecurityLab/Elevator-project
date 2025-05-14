@@ -1,0 +1,80 @@
+<!--pages/deviceDetail/deviceDetail.wxml-->
+<view class="container">
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading">
+    <view class="loading-spinner"></view>
+    <view class="loading-text">加载中...</view>
+  </view>
+
+  <view wx:else>
+    <!-- 设备基本信息 -->
+    <view class="device-info">
+      <view class="device-header">
+        <view class="device-name">{{deviceInfo.deviceName}}</view>
+        <view class="device-status {{deviceInfo.status === 1 ? 'status-normal' : 'status-warning'}}">
+          {{deviceInfo.status === 1 ? '在线' : '离线'}}
+        </view>
+      </view>
+      <view class="device-time">最后更新时间：{{blockchainData.statusDate}}</view>
+    </view>
+
+    <!-- 区块链数据展示 -->
+    <view class="blockchain-section">
+      <view class="section-title">区块链数据</view>
+      <view class="blockchain-card">
+        <view class="blockchain-row">
+          <text class="label">设备状态：</text>
+          <text class="value">{{blockchainData.deviceStatus === '1' ? '正常运行' : '维护中'}}</text>
+        </view>
+        <view class="blockchain-row">
+          <text class="label">设备序列号：</text>
+          <text class="value">{{blockchainData.deviceSn}}</text>
+        </view>
+        <view class="blockchain-row">
+          <text class="label">日发电量：</text>
+          <text class="value">{{blockchainData.dailyPowerGeneration}} kWh</text>
+        </view>
+        <view class="blockchain-row">
+          <text class="label">企业ID：</text>
+          <text class="value">{{blockchainData.deviceCompanyId}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 发电量统计图表 -->
+    <view class="chart-section">
+      <view class="section-title">发电量统计</view>
+      <view class="chart-wrapper">
+        <ec-canvas 
+          id="mychart-dom-line" 
+          canvas-id="mychart-line" 
+          ec="{{ ec }}" 
+          force-use-old-canvas="true"
+        ></ec-canvas>
+      </view>
+    </view>
+
+    <!-- 电梯列表 -->
+    <view class="elevator-section">
+      <view class="section-title">电梯列表</view>
+      <view class="elevator-list">
+        <view 
+          class="elevator-item" 
+          wx:for="{{elevatorList}}" 
+          wx:key="id" 
+          bindtap="goToElevatorMap" 
+          data-id="{{item.id}}"
+        >
+          <image class="elevator-image" src="{{item.image}}" mode="aspectFill"></image>
+          <view class="elevator-info">
+            <view class="elevator-name">{{item.elevatorName}}</view>
+            <view class="elevator-status {{item.status === 1 ? 'status-normal' : 'status-warning'}}">
+              {{item.status === 1 ? '正常运行' : '维护中'}}
+            </view>
+          </view>
+          <view class="arrow-right"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

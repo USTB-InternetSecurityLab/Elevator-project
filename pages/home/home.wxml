@@ -1,0 +1,63 @@
+<!-- 使用 scroll-view 包裹所有内容 -->
+<scroll-view 
+  scroll-y 
+  enhanced 
+  show-scrollbar="{{false}}" 
+  class="page-container"
+>
+  <!-- 渐变 Banner -->
+  <view class="banner">
+    <view class="banner-content">
+      <text class="banner-title">智能电梯硬件设备</text>
+      <text class="banner-subtitle">引领绿色新风向</text>
+      <text class="banner-desc">先进科技·安全高效的完美结合</text>
+    </view>
+  </view>
+
+  <!-- 轮播图 -->
+  <swiper 
+    class="swiper-container" 
+    indicator-dots="{{true}}" 
+    indicator-color="rgba(255, 255, 255, 0.6)"
+    indicator-active-color="#0066FF"
+    autoplay="{{true}}" 
+    interval="3000"
+    circular="{{true}}"
+  >
+    <swiper-item wx:for="{{swiperList}}" wx:key="id">
+      <image src="{{item.image}}" class="swiper-image" mode="aspectFill" />
+    </swiper-item>
+  </swiper>
+
+  <!-- 产品长海报 -->
+  <view class="product-poster-container">
+    <image 
+      src="https://s3.bmp.ovh/imgs/2025/05/09/e6955e0ff046684f.png" 
+      class="product-poster" 
+      mode="widthFix"
+      bindtap="onClickPoster"
+    />
+    <view class="poster-label">
+      <text class="label-title">核心产品体系</text>
+      <text class="label-desc">智能硬件 • 工业解决方案\n软件服务 • 定制开发</text>
+    </view>
+  </view>
+    <!-- 公司信息 -->
+    <view class="company-info-container">
+    <view class="company-info">
+      <view class="info-left">
+
+        <view class="info-item">
+          <image src="/pages/images/icon-phone.png" class="info-icon" />
+          <text class="info-text">电话：400-123-4567</text>
+        </view>
+        <view class="info-item">
+          <image src="/pages/images/icon-location.png" class="info-icon" />
+          <text class="info-text">地址：xx市xxx区</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <image src="/pages/images/首页宣传.jpeg" class="poster-code" mode="aspectFill" />
+
+</scroll-view>

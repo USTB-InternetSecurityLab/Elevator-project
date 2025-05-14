@@ -1,0 +1,15 @@
+<view class="login-container">
+  <view class="login-box">
+    <text class="title">设备监控系统</text>
+
+    <input class="input-field" placeholder="请输入用户账号" bindinput="handleUsernameInput" />
+    <input class="input-field" placeholder="请输入密码" type="password" bindinput="handlePasswordInput" />
+
+    <view class="remember-container">
+      <checkbox class="remember-checkbox" bindchange="handleRememberChange" /> <text>保存用户信息</text>
+    </view>
+
+    <button class="login-btn" bindtap="handleLogin">立即登录</button>
+  </view>
+</view>
+

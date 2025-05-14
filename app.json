@@ -1,0 +1,70 @@
+{
+  "pages": [
+    "pages/login/login",   
+    "pages/home/home", 
+    "pages/deviceList/deviceList",
+    "pages/nearby/nearby",
+    "pages/profile/profile"
+  ],
+  "subPackages": [
+    {
+      "root": "subpackages/device",
+      "pages": ["deviceDetail/deviceDetail"]
+    },
+    {
+      "root": "subpackages/map",
+      "pages": ["elevatorMap/elevatorMap"]
+    },  
+    {
+      "root": "subpackages/person",
+      "pages": [
+        "index/index",
+        "edit/edit",
+        "change/change"
+      ]
+    }
+  ],
+  "window": {
+    "navigationBarTitleText": "设备监管系统"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "需要获取您的位置以展示附近设备"
+    }
+  },
+  "usingComponents": {
+  },
+  "lazyCodeLoading": "requiredComponents",
+  "requiredPrivateInfos": ["getLocation"],
+  "tabBar": {
+    "color": "#888",
+    "selectedColor": "#07c160",
+    "backgroundColor": "#fafafa",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "/pages/images/home.png",
+        "selectedIconPath": "/pages/images/home-selected.png"
+      },
+      {
+        "pagePath": "pages/deviceList/deviceList",
+        "text": "搜索",
+        "iconPath": "/pages/images/search.png",
+        "selectedIconPath": "/pages/images/search_selected.png"
+      },
+      {
+        "pagePath": "pages/nearby/nearby",
+        "text": "附近",
+        "iconPath": "/pages/images/location.png",
+        "selectedIconPath": "/pages/images/location-selected.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "个人",
+        "iconPath": "/pages/images/user.png",
+        "selectedIconPath": "/pages/images/user-selected.png"
+      }
+    ]
+  }
+}

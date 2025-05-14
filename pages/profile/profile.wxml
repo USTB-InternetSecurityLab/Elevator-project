@@ -1,0 +1,61 @@
+<view class="profile-container">
+  <!-- 加载状态 -->
+  <view class="loading" wx:if="{{loading}}">
+    <loading>加载中...</loading>
+  </view>
+
+  <!-- 使用个人页面 -->
+  <view class="profile-header" wx:else>
+    <view class="user-info" bindtap="navigateToUserDetail">
+      <view class="avatar-placeholder">
+        <text>{{userInfo.name[0] || userInfo.username[0] || 'U'}}</text>
+      </view>
+      <view class="user-details">
+        <text class="username">{{userInfo.name || userInfo.username || '未设置昵称'}}</text>
+        <text class="phone">{{userInfo.phone || '未绑定手机号'}}</text>
+        <text class="role">{{userInfo.role || '普通用户'}}</text>
+      </view>
+      <view class="arrow">></view>
+    </view>
+  </view>
+
+  <!-- 交易模块 -->
+  <view class="transaction-module">
+    <view class="module-title">我的交易</view>
+    <view class="transaction-grid">
+      <view class="grid-item">
+        <view class="item-count">{{transactionStats.published}}</view>
+        <view class="item-label">发布</view>
+      </view>
+      <view class="grid-item">
+        <view class="item-count">{{transactionStats.sold}}</view>
+        <view class="item-label">已卖出</view>
+      </view>
+      <view class="grid-item">
+        <view class="item-count">{{transactionStats.favorites}}</view>
+        <view class="item-label">已收藏</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 菜单列表 -->
+  <view class="menu-list">
+    <view class="menu-item" bindtap="navigateToDeviceList">
+      <text class="menu-text">我的设备</text>
+      <view class="arrow">></view>
+    </view>
+    <view class="menu-item" bindtap="navigateToFeedback">
+      <text class="menu-text">意见反馈</text>
+      <view class="arrow">></view>
+    </view>
+    <view class="menu-item" bindtap="navigateToAbout">
+      <text class="menu-text">关于我们</text>
+      <view class="arrow">></view>
+    </view>
+  </view>
+
+  <!--退出按钮 -->
+  <view class="logout-button" bindtap="handleLogout">
+    <text>退出登录</text>
+  </view>
+</view>

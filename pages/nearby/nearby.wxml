@@ -1,0 +1,55 @@
+<view class="container">
+  <!-- 地图组件 -->
+  <map
+    id="map"
+    class="map"
+    longitude="{{longitude}}"
+    latitude="{{latitude}}"
+    scale="{{scale}}"
+    markers="{{markers}}"
+    show-location
+    bindmarkertap="onMarkerTap"
+    enable-zoom="{{true}}"
+    enable-scroll="{{true}}"
+  ></map>
+
+  <!-- 加载中提示 -->
+  <view class="loading" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <text>加载中...</text>
+  </view>
+
+  <!-- 电梯信息面板 -->
+  <view class="elevator-panel" wx:if="{{showPanel}}">
+    <view class="panel-header">
+      <text class="panel-title">{{selectedElevator.title}}</text>
+      <view class="close-btn" bindtap="closePanel">×</view>
+    </view>
+    <scroll-view class="panel-content" scroll-y>
+      <view class="info-group">
+        <view class="info-item">
+          <text class="label">地址：</text>
+          <text class="value">{{selectedElevator.address}}</text>
+        </view>
+        <view class="info-item">
+          <text class="label">制造商：</text>
+          <text class="value">{{selectedElevator.manufacturer}}</text>
+        </view>
+        <view class="info-item">
+          <text class="label">安装日期：</text>
+          <text class="value">{{selectedElevator.installationDate}}</text>
+        </view>
+        <view class="info-item">
+          <text class="label">上次维护：</text>
+          <text class="value">{{selectedElevator.lastMaintenanceDate}}</text>
+        </view>
+        <view class="info-item">
+          <text class="label">状态：</text>
+          <text class="value {{selectedElevator.status === 1 ? 'status-normal' : 'status-maintenance'}}">
+            {{selectedElevator.status === 1 ? '正常运行' : '维护中'}}
+          </text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

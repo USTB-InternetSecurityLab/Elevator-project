@@ -1,0 +1,37 @@
+<!--subpackages/person/change/change.wxml-->
+<view class="container">
+  <!-- 标题 -->
+  <view class="header">
+    <text class="title">修改密码</text>
+  </view>
+
+  <!-- 密码输入表单 -->
+  <view class="form">
+    <!-- 新密码输入 -->
+    <view class="input-group">
+      <text class="label">新密码</text>
+      <input 
+        class="input"
+        type="password"
+        placeholder="请输入新密码"
+        placeholder-class="placeholder"
+        bindinput="onNewPasswordInput"
+      />
+    </view>
+
+    <!-- 确认新密码 -->
+    <view class="input-group">
+      <text class="label">确认新密码</text>
+      <input 
+        class="input"
+        type="password"
+        placeholder="请再次输入新密码"
+        placeholder-class="placeholder"
+        bindinput="onConfirmPasswordInput"
+      />
+    </view>
+  </view>
+
+  <!-- 提交按钮 -->
+  <button class="submit-btn" bindtap="submitForm">确认修改</button>
+</view>
